@@ -1,0 +1,94 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#tsparticles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgb(87, 35, 117);
+  background: linear-gradient(
+    165deg,
+    rgba(87, 35, 117, 1) 0%,
+    rgba(148, 62, 197, 1) 55%,
+    rgba(211, 176, 231, 1) 100%
+  );
+}
+
+.header {
+  background-color: white;
+  height: 117px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 120px;
+}
+
+.header svg {
+  color: rgb(87, 35, 117);
+}
+
+.title {
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 1em;
+}
+
+.header-links a {
+  color: rgb(87, 35, 117);
+  text-decoration: none;
+}
+
+.footer {
+  min-height: 85px;
+  justify-self: flex-end;
+  padding-top: 35px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: white !important;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: grey;
+  font-size: 14px;
+}
+
+.footer a {
+  text-decoration: none;
+  padding: 8px 45px 0px;
+  border-radius: 3px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  display: inline-block;
+}
+
+.footer svg {
+  color: black;
+  font-size: 2em;
+}
+
+.footer-icons {
+  margin-top: 5px;
+}
