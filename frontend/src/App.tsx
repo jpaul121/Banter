@@ -24,7 +24,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Splash} />
           {/* <Route path='/signup' component={Signup} /> */}
-          {/* <Route path='/login' component={Login} /> */}
+          <Route path='/login' component={Login} />
         </Switch>
       {/* </AppContext.Provider> */}
     </Router>

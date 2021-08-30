@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+#tsparticles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgb(87, 35, 117);
+  background: linear-gradient(
+    165deg,
+    rgba(87, 35, 117, 1) 0%,
+    rgba(148, 62, 197, 1) 55%,
+    rgba(211, 176, 231, 1) 100%
+  );
+}
