@@ -1,19 +1,30 @@
-.authentication-container {
+.menu-container {
   display: flex;
   flex-direction: column;
 }
 
-.authentication-box {
+.menu-box {
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   height: 637px;
   max-width: 1238px;
-  box-shadow: 0px 4px 24px rgba(0,  0, 0, 0.1);
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
   margin: 48px auto 28px auto;
   padding: 44px 99px 48px;
   border-radius: 12px;
+}
+
+.menu-header {
+  font-size: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-header svg {
+  color: rgb(87, 35, 117);
 }
 
 .menu-item {
@@ -22,5 +33,9 @@
   display: flex;
   align-items: center;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 32px;
+  width: 600px;
+  min-height: 72px;
+  justify-content: center;
+  cursor: pointer;
 }
