@@ -1,9 +1,9 @@
-.login-container {
+.authentication-container {
   display: flex;
   flex-direction: column;
 }
 
-.login-box {
+.authentication-box {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -16,14 +16,14 @@
   border-radius: 12px;
 }
 
-.login-header {
+.authentication-header {
   font-size: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-header svg {
+.authentication-header svg {
   color: rgb(87, 35, 117);
 }
 
@@ -33,12 +33,12 @@
   padding-top: 10px;
 }
 
-.login-form {
+.authentication-form {
   display: flex;
   flex-direction: column;
 }
 
-.login-form input {
+.authentication-form input {
   box-sizing: border-box;
   display: inline-block;
   cursor: text;
@@ -67,7 +67,7 @@
   margin-bottom: 8px;
 }
 
-.signup {
+.change-authentication-method {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,11 +75,15 @@
   font-size: 16px;
 }
 
-.signup > * {
+.change-authentication-method > * {
   padding-top: 10px;
 }
 
-.signup a {
+.change-authentication-method a {
   text-decoration: none;
   color: rgb(87, 35, 117);
+}
+
+.error {
+  color: red;
 }

@@ -1,10 +1,12 @@
-import React from 'react'
-import Particles from 'react-tsparticles'
 import '../../stylesheets/pages/Splash.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments } from '@fortawesome/free-solid-svg-icons'
+
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
+import Particles from 'react-tsparticles'
+import React from 'react'
+import { faComments } from '@fortawesome/free-solid-svg-icons'
 import particlesOptions from '../../particles.json'
 
 function Splash() {

@@ -1,3 +1,5 @@
+import './css-reset.css'
+
 import React, { useState } from 'react'
 import {
   Route,
@@ -6,13 +8,10 @@ import {
 } from 'react-router-dom'
 
 import AppContext from './components/other/AppContext'
-import Login from './components/pages/Login'
+import Authentication from './components/pages/Authentication'
 import ProtectedRoute from './components/authentication/ProtectedRoute'
-import Signup from './components/pages/Signup'
 import Splash from './components/pages/Splash'
 import useGetUser from './hooks/useGetUser'
-
-import './css-reset.css'
 
 function App() {
   // const { user, setUser, isLoadingUser } = useGetUser()
@@ -23,8 +22,8 @@ function App() {
       {/* <AppContext.Provider value={{ isLoadingUser, searchQuery, setSearchQuery, user, setUser }}> */}
         <Switch>
           <Route exact path='/' component={Splash} />
-          {/* <Route path='/signup' component={Signup} /> */}
-          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Authentication} />
+          <Route path='/login' component={Authentication} />
         </Switch>
       {/* </AppContext.Provider> */}
     </Router>
