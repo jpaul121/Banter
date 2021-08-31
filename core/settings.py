@@ -12,10 +12,24 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 
 from corsheaders.defaults import default_headers
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# CORS Setup
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Methods',
+    'Vary',
+]
+
+ACCESS_CONTROL_RESPONSE_HEADERS = {
+  'Access-Control-Allow-Origin': 'http://localhost:8000',
+  'Vary': 'Origin',
+}
 
 
 # Quick-start development settings - unsuitable for production
@@ -135,3 +149,23 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MAX_SLUG_LENGTH = 15
+
+COMPILE_TIME_SETTING = 'development'
+
+PORT = 443
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+}

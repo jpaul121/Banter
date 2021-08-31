@@ -1,14 +1,15 @@
 import React, { createContext } from 'react'
 
-interface TwoNoteContext {
+interface BanterContext {
   isLoadingUser: boolean,
+  setIsLoadingUser?: React.Dispatch<React.SetStateAction<boolean>>,
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>,
   setUser: React.Dispatch<React.SetStateAction<string | null>> | null,
   searchQuery: string,
   user: string | null,
 }
 
-const initialContextValue: TwoNoteContext = {
+const initialContextValue: BanterContext = {
   user: null,
   searchQuery: '',
   setSearchQuery: () => {},
@@ -16,6 +17,6 @@ const initialContextValue: TwoNoteContext = {
   isLoadingUser: false,
 }
 
-const AppContext = createContext<TwoNoteContext>(initialContextValue)
+const AppContext = createContext<BanterContext>(initialContextValue)
 
 export default AppContext

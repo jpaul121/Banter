@@ -15,16 +15,16 @@ class MessageViewSet(viewsets.ModelViewSet):
   
   @action(detail=False, methods=['GET',], name='View Messages')
   def view_messages(self, request, *args, **kwargs):
-    if request.get_full_path() == '/api/inbox':
-      queryset = self.filter_queryset(
-        Message.objects.all(
-          sender=request.user.get_username()
-        )
-      )
-    else if request.get_full_path() == '/api/outbox':
+    if request.get_full_path() == '/api/messages/inbox':
       queryset = self.filter_queryset(
         Message.objects.all(
           receiver=request.user.get_username()
+        )
+      )
+    elif request.get_full_path() == '/api/messages/outbox':
+      queryset = self.filter_queryset(
+        Message.objects.all(
+          sender=request.user.get_username()
         )
       )
 

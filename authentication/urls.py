@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import UserCreate, ObtainRefreshToken
+from .views import CreateUser, ObtainRefreshToken
 
 urlpatterns = [
-  path('user/create/', UserCreate.as_view(), name='create_user'),
+  path('user/create/', CreateUser.as_view(), name='create_user'),
   path('token/obtain/', ObtainRefreshToken.as_view(), name='token_create'),
 ]
 

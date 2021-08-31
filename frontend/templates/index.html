@@ -12,5 +12,7 @@
   <!-- React goes here. -->
 </div>
 </body>
+{{ COMPILE_TIME_SETTING|json_script:"compileTimeSetting" }}
+{{ PORT|json_script:"port" }}
 <script src='{% static "frontend/index.bundle.js" %}'></script>
 </html>

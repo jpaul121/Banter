@@ -1,12 +1,14 @@
 import '../../stylesheets/pages/Authentication.css'
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import React, { useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
+import AppContext from '../other/AppContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Particles from 'react-tsparticles'
 import { axiosInstance } from '../../axiosAPI'
 import { faComments } from '@fortawesome/free-solid-svg-icons'
+import jwt from 'jwt-decode'
 import particlesOptions from '../../particles.json'
 
 enum AuthenticationMethod {
@@ -14,25 +16,27 @@ enum AuthenticationMethod {
   Signup,
 }
 
-function Authentication() {
-  const [ authMethod, ] = useState<AuthenticationMethod>(
-    location.pathname === '/login' ? AuthenticationMethod.Login : AuthenticationMethod.Signup
+function Authentication(props) {
+  const location = useLocation()
+  
+  const [ authMethod, setAuthMethod ] = useState<AuthenticationMethod>(
+    /\/login\/?/im.test(location.pathname) ? AuthenticationMethod.Login : AuthenticationMethod.Signup
   )
   const [ errorStatus, setErrorStatus ] = useState<Number | null>(null)
 
-  const emailRef = useRef()
+  const usernameRef = useRef()
   const passwordRef = useRef()
 
   const history = useHistory()
-  const location = useLocation()
+  const { setUser, setIsLoadingUser } = useContext(AppContext)
 
   async function useAuth(e) {
     e.preventDefault()
     
     if (authMethod === AuthenticationMethod.Login) {
       axiosInstance.post(
-        `/auth/token/obtain`, {
-          email: emailRef.current.value,
+        `/auth/token/obtain/`, {
+          username: usernameRef.current.value,
           password: passwordRef.current.value,
         }
       )
@@ -41,7 +45,12 @@ function Authentication() {
         localStorage.setItem('access_token', response.data.access)
         localStorage.setItem('refresh_token', response.data.refresh)
 
-        history.push('/messages')
+        const tokenObj = jwt(localStorage.getItem('access_token'))
+        
+        setUser(tokenObj['user_id'])
+        setIsLoadingUser(false)
+
+        history.push('/menu')
       })
       .catch(err => {
         setErrorStatus(err.response.status)
@@ -50,12 +59,12 @@ function Authentication() {
 
     else if (authMethod === AuthenticationMethod.Signup) {
       axiosInstance.post(
-        `/auth/user/create`, {
-          email: emailRef.current.value,
+        `/auth/user/create/`, {
+          username: usernameRef.current.value,
           password: passwordRef.current.value,
         }
       )
-      .then(response => {
+      .then(() => {
         history.push('/login')
       })
       .catch(err => {
@@ -63,6 +72,14 @@ function Authentication() {
       })
     }
   }
+
+  useEffect(() => {
+    setAuthMethod(
+      /\/login\/?/im.test(location.pathname)
+        ? AuthenticationMethod.Login
+        : AuthenticationMethod.Signup
+    )
+  }, [ location, errorStatus ])
   
   return (
     <div className='authentication-container'>
@@ -74,7 +91,7 @@ function Authentication() {
           <p className='tagline'>Connect with the ones who matter most.</p>
         </div>
         <div className='authentication-form'>
-          <input type='text' placeholder='Email address' ref={emailRef} />
+          <input type='text' placeholder='Email address' ref={usernameRef} />
           <input type='password' placeholder='Password' ref={passwordRef} />
           {
             errorStatus === null ? null
@@ -87,8 +104,8 @@ function Authentication() {
           >
             {
               authMethod === AuthenticationMethod.Login
-                ? 'Sign in'
-                : 'Register'
+                ? 'Log in'
+                : 'Sign up'
             }
           </button>
         </div>
@@ -100,7 +117,7 @@ function Authentication() {
                 : 'Already have an account?'
             }
           </p>
-          <Link to={`/signup`}>
+          <Link to={authMethod === AuthenticationMethod.Login ? '/signup' : '/login'}>
             {
               authMethod === AuthenticationMethod.Login
                 ? 'Create one.'

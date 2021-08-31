@@ -4,13 +4,12 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 
 class AppUserSerializer(serializers.ModelSerializer):
-  email = serializers.EmailField(required=True)
   password = serializers.CharField(min_length=8, write_only=True)
 
   class Meta:
     model = User
     extra_kwargs = { 'password': { 'write_only': True } }
-    fields = [ 'email', 'password' ]
+    fields = [ 'username', 'password' ]
   
   def create(self, validated_data):
     password = validated_data['password']
@@ -29,6 +28,6 @@ class AppTokenObtainPairSerializer(TokenObtainPairSerializer):
   def get_token(cls, user):
     token = super().get_token(user)
 
-    token['user'] = user.email
-
+    # Just in case I need to modify user tokens later on
+    
     return token

@@ -22,16 +22,22 @@ function useGetUser() {
           localStorage.setItem('refresh_token', response.data.refresh)
 
           axiosInstance.defaults.headers['Authorization'] = `JWT ${response.data.access}`
-        } else {
+        } 
+        
+        else {
           localStorage.clear()
           return <Redirect to={'/login'} />;
         }
+      })
+      .catch(err => {
+        localStorage.clear()
+        throw err;
       })
       
       if (localStorage.getItem('access_token')) {
         const tokenObj = jwt<BanterToken>(localStorage.getItem('access_token')!)
 
-        setUser(tokenObj.user)
+        setUser(tokenObj['user_id'])
         setIsLoadingUser(false)
 
         return;
@@ -49,6 +55,7 @@ function useGetUser() {
     user,
     setUser,
     isLoadingUser,
+    setIsLoadingUser,
   };
 }
 
