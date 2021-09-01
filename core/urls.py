@@ -19,6 +19,7 @@ urlpatterns = [
     path('compose/', include('frontend.urls')),
     path('inbox/', include('frontend.urls')),
     path('outbox/', include('frontend.urls')),
+    path('messages/<slug:message_pk>', include('frontend.urls')),
     # authentication
     path('auth/', include('authentication.urls')),
     # messaging

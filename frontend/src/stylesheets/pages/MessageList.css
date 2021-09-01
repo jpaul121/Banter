@@ -7,7 +7,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   height: 637px;
   max-width: 1238px;
   box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 24px;
 }
 
 .list-header svg {
@@ -33,9 +34,18 @@
   display: flex;
   align-items: center;
   font-family: sans-serif;
-  font-size: 32px;
+  font-size: 24px;
   width: 600px;
-  min-height: 72px;
-  justify-content: center;
+  min-height: 60px;
+  justify-content: start;
   cursor: pointer;
+}
+
+.message-title {
+  margin-left: 12px;
+}
+
+.message-timestamp {
+  margin-left: auto;
+  margin-right: 12px;
 }

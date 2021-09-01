@@ -12,6 +12,7 @@ import Authentication from './components/pages/Authentication'
 import Composition from './components/pages/Composition'
 import MainMenu from './components/pages/MainMenu'
 import MessageList from './components/pages/MessageList'
+import MessageView from './components/pages/MessageView'
 import ProtectedRoute from './components/authentication/ProtectedRoute'
 import Splash from './components/pages/Splash'
 import useGetMessages from './hooks/useGetMessages'
@@ -28,6 +29,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Splash} />
           <ProtectedRoute path='/menu' component={MainMenu} />
+          <ProtectedRoute path='/messages/:message_id' component={MessageView} />
           <ProtectedRoute path='/compose' component={Composition} />
           <ProtectedRoute path='/inbox' component={MessageList} />
           <ProtectedRoute path='/outbox' component={MessageList} />
