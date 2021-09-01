@@ -1,6 +1,7 @@
 import React, { createContext } from 'react'
 
 interface BanterContext {
+  messageData?: Array<Object>,
   isLoadingUser: boolean,
   setIsLoadingUser?: React.Dispatch<React.SetStateAction<boolean>>,
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>,

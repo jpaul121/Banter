@@ -7,25 +7,21 @@ class MessageSerializer(serializers.ModelSerializer):
   message_id = serializers.SlugField(source='id', read_only=True, required=False)
   title = serializers.CharField(required=False)
   content = serializers.CharField()
-  sender = serializers.SerializerMethodField('_user')
+  sender = serializers.SlugField()
   recipient = serializers.SlugField()
   timestamp = serializers.DateTimeField(read_only=True)
-
-  def _user(self, obj):
-    request = self.context.get('request', None)
-    if request:
-      return request.user
 
   def create(self, validated_data):
     title = validated_data['title']
     content = validated_data['content']
-    recipient = validated_data['recipient']
+    sender = User.objects.get(id=int(validated_data['sender']))
+    recipient = User.objects.get(username=validated_data['recipient'])
 
     response_data = {
       'title': title,
       'content': content,
-      'sender': sender,
       'recipient': recipient,
+      'sender': sender,
     }
 
     return Message.objects.create(**response_data)

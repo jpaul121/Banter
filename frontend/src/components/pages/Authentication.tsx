@@ -16,7 +16,7 @@ enum AuthenticationMethod {
   Signup,
 }
 
-function Authentication(props) {
+function Authentication() {
   const location = useLocation()
   
   const [ authMethod, setAuthMethod ] = useState<AuthenticationMethod>(
